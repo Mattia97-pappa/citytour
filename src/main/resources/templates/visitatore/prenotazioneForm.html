@@ -11,12 +11,12 @@
 
 <style>
     .iti__country-list {
-        background-color: #212529 !important; /* dark background */
-        color: white !important;             /* text color */
+        background-color: #212529 !important; 
+        color: white !important;             
     }
 
     .iti__country:hover {
-        background-color: #343a40 !important; /* hover effect */
+        background-color: #343a40 !important; 
     }
 
     .iti__country-name {
@@ -48,7 +48,7 @@
 </style>
     
 <script>
-    // Funzione per aggiornare il prezzo totale quando l'utente cambia la quantità
+    
     function aggiornaPrezzo() {
         var prezzoUnitario = parseFloat(document.getElementById("prezzoUnitario").textContent);
         var quantita = document.getElementById("quantita").value;
@@ -56,7 +56,7 @@
         document.getElementById("prezzoTotale").textContent = "€ " + prezzoTotale.toFixed(2);
     }
 
-    // Funzione per eseguire l'aggiornamento del prezzo al caricamento della pagina
+    
     window.onload = function() {
         aggiornaPrezzo();
     }
@@ -150,9 +150,9 @@
             utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
         });
     
-        // Al submit sovrascrive il valore dell'input visibile
+       
         input.form.addEventListener("submit", function () {
-            input.value = iti.getNumber(); // esempio: +393491234567
+            input.value = iti.getNumber();
         });
     </script>
     
