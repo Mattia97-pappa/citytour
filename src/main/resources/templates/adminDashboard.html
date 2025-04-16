@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        a[href="/admin/logout"] {
+            background-color: #2be70e;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+        a[href="/admin/logout"]:hover {
+            background-color: #08e7a0;
+        }
+    
+        
+        a[href^="/admin/prenotazione/modifica/"] {
+            background-color: #ffcc00;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        a[href^="/admin/prenotazione/modifica/"]:hover {
+            background-color: #ff9c00;
+            transform: scale(1.05);
+        }
+    
+      
+        a[href^="/admin/prenotazione/elimina/"] {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        a[href^="/admin/prenotazione/elimina/"]:hover {
+            background-color: #c82333;
+            transform: scale(1.05);
+        }
+    </style>
+      
+
+
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+
+    <h2>Dashboard Admin</h2>
+
+    <h3>Elenco delle Prenotazioni</h3>
+    
+
+    <form action="/admin/dashboard" method="GET">
+        <label for="mese">Seleziona mese:</label>
+        <select id="mese" name="mese">
+            <option value="01">Gennaio</option>
+            <option value="02">Febbraio</option>
+            <option value="03">Marzo</option>
+            <option value="04">Aprile</option>
+            <option value="05">Maggio</option>
+            <option value="06">Giugno</option>
+            <option value="07">Luglio</option>
+            <option value="08">Agosto</option>
+            <option value="09">Settembre</option>
+            <option value="10">Ottobre</option>
+            <option value="11">Novembre</option>
+            <option value="12">Dicembre</option>
+        </select>
+        
+        <button type="submit">Cerca</button>
+    </form>
+
+    <br>
+
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID Prenotazione</th>
+                <th>Crawl ID</th>
+                <th>Nome e Cognome</th>
+                <th>Email</th>
+                <th>Numero di telefono</th>
+                <th>Quantità</th>
+                <th>Data Evento</th>
+                <th>Data Acquisto</th>
+                <th>Prezzo Totale</th>
+                <th>Eliminazione</th>
+                <th>Modifiche</th>
+               
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="prenotazione : ${prenotazioni}">
+                <td th:text="${prenotazione.id}"></td>
+                <td th:text="${prenotazione.crawlId}"></td>
+                <td th:text="${prenotazione.nomeCognome}"></td>
+                <td th:text="${prenotazione.email}"></td>
+                <td th:text="${prenotazione.telefono}"></td>
+                <td th:text="${prenotazione.quantita}"></td>
+                <td th:text="${prenotazione.dataEvento}"></td>
+                <td th:text="${prenotazione.createdAt}"></td>
+                <td th:text="${prenotazione.prezzoTot}"></td>
+                
+                <td>
+                    <a th:href="@{'/admin/prenotazione/elimina/' + ${prenotazione.id}}" class="btn btn-danger">
+                        Elimina
+                    </a>
+                    
+            </td>
+            <td>
+                <a th:href="@{'/admin/prenotazione/modifica/' + ${prenotazione.id}}" class="btn btn-warning">
+                    Modifica
+                </a>
+                
+            </td>
+            </tr>
+        </tbody>
+    
+    </table>
+
+    <br>
+    <a href="/admin/logout">Logout</a>
+
+</body>
+</html>

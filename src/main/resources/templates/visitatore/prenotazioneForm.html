@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Prenotazione Pub Crawl</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+
+    
+
+<style>
+    .iti__country-list {
+        background-color: #212529 !important; /* dark background */
+        color: white !important;             /* text color */
+    }
+
+    .iti__country:hover {
+        background-color: #343a40 !important; /* hover effect */
+    }
+
+    .iti__country-name {
+        color: white !important;
+    }
+
+    .iti--separate-dial-code .iti__selected-flag {
+        background-color: #343a40 !important;
+        border: 1px solid #495057 !important;
+    }
+
+    .iti__flag-container {
+        background-color: #343a40 !important;
+    }
+
+    .iti__flag-box {
+        margin-right: 6px;
+    }
+
+    .iti input {
+        background-color: #212529 !important;
+        color: white !important;
+        border: 1px solid #495057;
+    }
+
+    .iti__selected-dial-code {
+        color: white !important;
+    }
+</style>
+    
+<script>
+    // Funzione per aggiornare il prezzo totale quando l'utente cambia la quantità
+    function aggiornaPrezzo() {
+        var prezzoUnitario = parseFloat(document.getElementById("prezzoUnitario").textContent);
+        var quantita = document.getElementById("quantita").value;
+        var prezzoTotale = prezzoUnitario * quantita;
+        document.getElementById("prezzoTotale").textContent = "€ " + prezzoTotale.toFixed(2);
+    }
+
+    // Funzione per eseguire l'aggiornamento del prezzo al caricamento della pagina
+    window.onload = function() {
+        aggiornaPrezzo();
+    }
+</script>
+    
+    
+    </script>
+</head>
+<body class="bg-dark text-white">
+    <div class="container mt-5">
+        <a href="/pubcrawl/all" class="btn btn-outline-success">
+            <i class="bi bi-skip-backward"></i> Torna ai crawl🔙
+        </a>
+        <h2>Prenotazione per il Pub Crawl di <span th:text="${crawl.cittapub}"></span></h2>
+        
+        
+        <div th:if="${errorMessage}" class="alert alert-danger">
+            <span th:text="${errorMessage}"></span>
+        </div>
+        
+        
+        <form action="/prenotazione" method="post">
+            <div class="mb-3">
+                <label for="nomeCognome" class="form-label">Nome e Cognome</label>
+                <input type="text" id="nomeCognome" name="nomeCognome" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Numero di Telefono</label>
+                <input type="tel" id="telefono" name="telefono" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="dataEvento" class="form-label">Data dell'Evento</label>
+                <input type="date" id="dataEvento" name="dataEvento" class="form-control" required>
+            </div>
+
+
+            
+            <div class="mb-3">
+                <label for="quantita" class="form-label">Numero di Partecipanti</label>
+                <select id="quantita" name="quantita" class="form-control" required onchange="aggiornaPrezzo()">
+                
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Prezzo per persona</label>
+                <p id="prezzoUnitario" th:text="${crawl.prezzo}"></p>  
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Prezzo Totale</label>
+                <p id="prezzoTotale">€ 0.00</p>  
+            </div>
+            <input type="hidden" name="crawlId" th:value="${crawl.id}">
+            <button type="submit" class="btn btn-primary">Prenota</button>
+        </form>
+    </div>
+
+
+
+    <script>
+        const input = document.querySelector("#telefono");
+        const iti = window.intlTelInput(input, {
+            initialCountry: "it",
+            preferredCountries: ["it", "fr", "es", "de", "gb"],
+            separateDialCode: true,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+        });
+    
+        // Al submit sovrascrive il valore dell'input visibile
+        input.form.addEventListener("submit", function () {
+            input.value = iti.getNumber(); // esempio: +393491234567
+        });
+    </script>
+    
+    
+    
+    
+    
+    
+    
+
+
+</body>
+</html>
