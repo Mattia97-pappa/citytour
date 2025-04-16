@@ -64,7 +64,7 @@ Optional<Crawl> crawl = crawlRepository.findById(crawlId);
                 return "/visitatore/prenotazioneForm"; 
             }
     
-            // Verifica se la data è successiva al 31 dicembre 2025
+           
             LocalDate dataLimite = LocalDate.of(2025, 12, 31);
             if (prenotazione.getDataEvento() != null && prenotazione.getDataEvento().isAfter(dataLimite)) {
                 model.addAttribute("errorMessage", "La data selezionata non può essere oltre il 31 dicembre 2025.");
