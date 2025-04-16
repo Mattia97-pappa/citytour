@@ -23,9 +23,7 @@ is a full-stack Java-based web application that allows travelers to browse, book
 
  🎥 Demo
 
- 👤 User Experience
 
- 🎥 Demo Videos
 
   
   [User Experience ](https://vimeo.com/1076030721)
