@@ -25,9 +25,11 @@ is a full-stack Java-based web application that allows travelers to browse, book
 
  👤 User Experience
 
-[![User Demo](https://img.youtube.com/vi/mmX7vlvxz0Q/0.jpg)](https://www.youtube.com/watch?v=mmX7vlvxz0Q)
+ 🎥 Demo Videos
 
- 🛡️ Admin Experience
+  
+  [User Experience ](https://vimeo.com/1076030721)
 
-[![Admin Demo](https://img.youtube.com/vi/A0LngukYlCQ/0.jpg)](https://www.youtube.com/watch?v=A0LngukYlCQ)
+
+  [Admin Experience](https://vimeo.com/1076034611)
 
