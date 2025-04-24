@@ -20,8 +20,58 @@ cd citytour
 ```
 
 
+Copia le tabelle per far funzionare il progetto. Per accedere come admin devi creare un admin come record nel database.
 
-
+```admin
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `cittapub` varchar(255) DEFAULT NULL,
+  `crawl_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+```
+```crawl
+CREATE TABLE `crawl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `posto_id` int(11) NOT NULL,
+  `cittapub` varchar(255) DEFAULT NULL,
+  `descrizione` varchar(255) DEFAULT NULL,
+  `prezzo` int(11) DEFAULT NULL,
+  `immagine` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `posto_id` (`posto_id`),
+  CONSTRAINT `crawl_ibfk_1` FOREIGN KEY (`posto_id`) REFERENCES `posti` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+```
+```posti
+CREATE TABLE `posti` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `citta` varchar(255) DEFAULT NULL,
+  `descrizione` text DEFAULT NULL,
+  `hostel` varchar(255) DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `cittapub` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+```
+```prenotazioni
+CREATE TABLE `prenotazioni` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `crawl_id` int(11) NOT NULL,
+  `nome_cognome` varchar(255) DEFAULT NULL,
+  `telefono` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `data_evento` date NOT NULL,
+  `quantita` int(11) NOT NULL DEFAULT 1,
+  `created_at` date DEFAULT NULL,
+  `prezzoTot` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `crawl_id` (`crawl_id`),
+  CONSTRAINT `prenotazioni_ibfk_1` FOREIGN KEY (`crawl_id`) REFERENCES `crawl` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+```
 
 
 
