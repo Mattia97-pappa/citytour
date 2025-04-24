@@ -12,6 +12,9 @@ repository → interfaccia con il DB
 
 security & config → login, autenticazione e accessi
 
+
+Accedi all'app dal browser vai su http://localhost:8080
+
 ▶️ Per eseguire il progetto Clona la repository con il seguente comando su gitbash
 
 ```codice
