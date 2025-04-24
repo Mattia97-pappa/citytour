@@ -13,9 +13,11 @@ repository → interfaccia con il DB
 security & config → login, autenticazione e accessi
 
 ▶️ Per eseguire il progetto Clona la repository con il seguente comando su gitbash
+
+```codice
 git clone https://github.com/Mattia97-pappa/citytour.git
 cd citytour
-
+```
 
 
 
